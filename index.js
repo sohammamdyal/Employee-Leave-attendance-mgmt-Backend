@@ -14,6 +14,9 @@
 
  app.use("/uploads", express.static("uploads"));
 
+ app.get("/", (req, res) => {
+   res.send("API is running");
+ });
 
  app.use("/api/employee", require("./routes/authRoutes"));
  app.use("/api/admin", require("./routes/adminRoutes"));
@@ -25,8 +28,8 @@
 
 
  const PORT =5000;
- const HOST ="localhost";
 
- app.listen(PORT, HOST, () => {
-    console.log(`Server running on http://${HOST}:${PORT}`);
+
+ app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server running on port ${PORT}`);
  });
