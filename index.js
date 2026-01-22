@@ -2,26 +2,17 @@
  const dotenv = require("dotenv");
  const cors = require("cors");
  const connectDB = require("./config/db");
-const path = require("path");
-const fileURLToPath = require("url").fileURLToPath;
 
  dotenv.config();
  connectDB();
 
  const app = express();
 
- 
- const __filename = fileURLToPath(import.meta.url);
- const __dirname = path.dirname(__filename);
- 
- // MUST be BEFORE routes
- 
- 
  app.use(cors());
  app.use(express.json());
  app.use(express.urlencoded({ extended: true }));
 
- app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+ app.use("/uploads", express.static("uploads"));
 
  app.get("/", (req, res) => {
    res.send("API is running");
